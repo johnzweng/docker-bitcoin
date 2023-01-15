@@ -9,9 +9,11 @@ if [[ "$1" == "bitcoin-cli" || "$1" == "bitcoin-tx" || "$1" == "bitcoind" || "$1
 		CONFIG_PREFIX=$'regtest=1\n[regtest]'
 	elif [[ "${BITCOIN_NETWORK}" == "testnet" ]]; then
 		CONFIG_PREFIX=$'testnet=1\n[test]'
-	elif [[ "${BITCOIN_NETWORK}" == "mainnet" ]]; then
-		CONFIG_PREFIX=$'mainnet=1\n[main]'
-	else 
+	elif [[ "${BITCOIN_NETWORK}" == "signet" ]]; then
+		CONFIG_PREFIX=$'signet=1\n[signet]'
+	else
+		# default: if no network specified, assume mainnet
+		CONFIG_PREFIX=$'[main]'
 		BITCOIN_NETWORK=""
 	fi
 
